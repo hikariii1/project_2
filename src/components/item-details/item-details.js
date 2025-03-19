@@ -1,15 +1,13 @@
-import React, { Component } from 'react';
-
+import React, { Component } from 'react'
 import './item-details.css';
-import SwapiService from "../../services/swapi-service";
-import Spinner from "../spinner";
+import SwapiService from "../../services/swapi-service"
+import Spinner from "../spinner"
 
 const Record = ({ item, field, label }) => {
     return (
         <li className="list-group-item">
-            <span className="term">{ label }:</span>
-            <span>{ field }</span>
-        </li>
+            <span className="term">{label}:</span>
+            <span>{item[field]}</span>        </li>
     )
 }
 
@@ -64,12 +62,12 @@ export default class ItemDetails extends Component {
 
         const spinner = loading ? <Spinner /> : null
 
-        const content = !loading ? <ItemDetailsView item={item} image={image} context={this.props.children}/> : null
+        const content = !loading ? <ItemDetailsView item={item} image={image} context={this.props.children} /> : null
 
         return (
             <div className="person-details card">
-                { spinner }
-                { content }
+                {spinner}
+                {content}
             </div>
         )
     }
@@ -77,18 +75,19 @@ export default class ItemDetails extends Component {
 
 const ItemDetailsView = ({ item, image, context }) => {
 
-    const { id, name, gender, birthYear, eyeColor } = item
-
+    const { name } = item
     return (
         <React.Fragment>
             <img className="person-image" alt="person image"
-                 src={image} />
-
+                src={image} />
             <div className="card-body">
-                <h4>{ name }</h4>
+                <h4>{name}</h4>
                 <ul className="list-group list-group-flush">
-                    { context }
-                </ul>
+                    {
+                        React.Children.map(context, (child) => {
+                            return React.cloneElement(child, { item })
+                        })
+                    }                </ul>
             </div>
         </React.Fragment>
     )
