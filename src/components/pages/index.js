@@ -1,5 +1,5 @@
-import PeoplePage from "./peoplepage"
- import PlanetsPage from "./planetspage"
+import PeoplePage from "./people-page"
+ import PlanetsPage from "./planets-page"
  import StarshipsPage from "./starshipspage"
  import SecretPage from "./secret-page"
  import LoginPage from "./login-page"
