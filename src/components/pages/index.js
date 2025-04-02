@@ -3,11 +3,13 @@ import PeoplePage from "./people-page"
  import StarshipsPage from "./starshipspage"
  import SecretPage from "./secret-page"
  import LoginPage from "./login-page"
+ import WelcomePage from "./start-page"
 
  export {
      PeoplePage,
      PlanetsPage,
      StarshipsPage,
      SecretPage,
-     LoginPage
+     LoginPage,
+     WelcomePage
  }
