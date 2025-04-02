@@ -1,18 +1,19 @@
-import React from "react"
-import { withRouter } from 'react-router-dom'
+import React from "react";
+import { useParams, useNavigate } from "react-router-dom";
 
-import { PersonDetails, PersonList } from "../sw-components"
-import Row from "../row"
+import { PersonDetails, PersonList } from "../sw-components";
+import Row from "../row";
 
-const PeoplePage = ({ history, match }) => {
+const PeoplePage = () => {
+  const { id } = useParams();
+  const navigate = useNavigate();
 
-    const { id } = match.params
+  return (
+    <Row
+      left={<PersonList onItemSelected={(id) => navigate(`/people/${id}`)} />}
+      right={<PersonDetails itemId={id} />}
+    />
+  );
+};
 
-    return (
-        <Row
-        left={<PersonList onItemSelected={( id ) => history.push(id)} />}
-            right={<PersonDetails itemId={id} />}
-        />
-    )
-}
-export default withRouter(PeoplePage)
+export default PeoplePage;

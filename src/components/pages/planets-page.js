@@ -1,17 +1,18 @@
-import React from "react"
-import { withRouter } from 'react-router-dom'
+import React from "react";
+import { useParams, useNavigate } from "react-router-dom";
 
-import { PlanetList, PlanetDetails } from "../sw-components"
-import Row from "../row"
+import { PlanetList, PlanetDetails } from "../sw-components";
+import Row from "../row";
 
-const PlanetsPage = ({ history, match }) => {
+const PlanetsPage = () => {
+  const { id } = useParams();
+  const navigate = useNavigate();
+  return (
+    <Row
+      left={<PlanetList onItemSelected={(id) => navigate(`/planets/${id}`)} />}
+      right={<PlanetDetails itemId={id} />}
+    />
+  );
+};
 
-    const { id } = match.params
-    return (
-        <Row
-            left={<PlanetList onItemSelected={(id) => history.push(id)} />}
-            right={<PlanetDetails itemId={id} />}
-        />
-    )
-}
-export default withRouter(PlanetsPage)
+export default PlanetsPage;
